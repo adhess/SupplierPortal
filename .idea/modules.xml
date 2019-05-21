@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/SupplierPortalPFE.iml" filepath="$PROJECT_DIR$/.idea/SupplierPortalPFE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AuthorizationService/authenticationService.iml" filepath="$PROJECT_DIR$/AuthorizationService/authenticationService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka_service/eureka_service.iml" filepath="$PROJECT_DIR$/eureka_service/eureka_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/p2p_service/p2p_service.iml" filepath="$PROJECT_DIR$/p2p_service/p2p_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zull_service/zull_service.iml" filepath="$PROJECT_DIR$/zull_service/zull_service.iml" />
+    </modules>
+  </component>
+</project>

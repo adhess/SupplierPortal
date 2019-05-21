@@ -250,9 +250,9 @@ export class LoginService {
     this.stompClient.connect({}, () => {
       this.notificationSub = that.stompClient.subscribe('/' + this.infoToken.sub, (message) => {
         if (message.body) {
-          console.log('-----------------');
-          console.log(message.body);
-          console.log('-----------------');
+          this.snackBar.open(message.body, ' :message', {
+            duration: 2000,
+          });
         }
       });
     });
