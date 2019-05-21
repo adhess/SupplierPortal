@@ -1,0 +1,108 @@
+<form #f="ngForm" *ngIf="loginService.userInfo">
+
+  <mat-card style="width: 600px; margin: auto;margin-top: 2em">
+    <mat-card-header>
+      <mat-card-title>Information Générale</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content fxLayout="column">
+
+      <mat-form-field>
+        <input matInput placeholder="NOM"  type="text" ngModel="{{loginService.userInfo.name}}" name="name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Téléphone" ngModel="{{loginService.userInfo.telephone}}" type="text"
+               name="telephone">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Fax" ngModel="{{loginService.userInfo.fax}}" type="text" name="fax">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Email" ngModel="{{loginService.userInfo.email}}" type="text" name="email">
+      </mat-form-field>
+
+    </mat-card-content>
+  </mat-card>
+
+
+  <mat-card style="width: 600px; margin: auto;margin-top: 2em">
+
+    <mat-card-header>
+      <mat-card-title>Adresse</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content fxLayout="column">
+
+      <mat-form-field>
+        <input matInput placeholder="Ville" ngModel="{{loginService.userInfo.address.city}}" type="text" name="city">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Etat" ngModel="{{loginService.userInfo.address.state}}" type="text" name="state">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Code Postal" ngModel="{{loginService.userInfo.address.zipCode}}" type="number"
+               name="zipCode">
+      </mat-form-field>
+
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card style="width: 600px; margin: auto;margin-top: 2em" *ngIf="loginService.isSupplier()">
+
+    <mat-card-header>
+      <mat-card-title>Information Société</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content fxLayout="column">
+
+      <mat-form-field>
+        <input matInput placeholder="Secteur d'activité" ngModel="{{loginService.userInfo.activitySector}}" type="text"
+               name="activitySector">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Matricule" ngModel="{{loginService.userInfo.company_number}}" type="text"
+               name="company_number">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="TVA" ngModel="{{loginService.userInfo.tva}}" type="text"
+               name="tva">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Nombre d'employés " ngModel="{{loginService.userInfo.employeeNumber}}" type="number"
+               name="employeeNumber">
+      </mat-form-field>
+
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card style="width: 600px; margin: auto;margin-top: 2em" *ngIf="loginService.isContact()">
+
+    <mat-card-header>
+      <mat-card-title>Privilége</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content fxLayout="column">
+
+      <ul>
+        <li *ngFor="let auth of loginService.authorities">{{auth}}</li>
+      </ul>
+
+
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card style="width: 600px; margin: auto;margin-top: 2em; ;margin-bottom: 15em">
+    <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+      <button mat-button color="primary" (click)="updateUser(f.value)">Modifier</button>
+    </mat-card-content>
+  </mat-card>
+
+</form>

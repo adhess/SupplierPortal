@@ -1,0 +1,60 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav role="navigation" mode="push">
+
+    <mat-nav-list style=";margin-top: 3em">
+      <a mat-list-item routerLink="/home" (click)="sidenav.toggle()">Accueil</a>
+      <mat-divider *ngIf="loginService.isReadInvoice()"></mat-divider>
+      <a mat-list-item routerLink="/i/invoice" *ngIf="loginService.isReadInvoice()" (click)="sidenav.toggle()">Factures</a>
+      <mat-divider *ngIf="loginService.isReadOrder()"></mat-divider>
+      <a mat-list-item routerLink="/c/order" *ngIf="loginService.isReadOrder()" (click)="sidenav.toggle()">Commandes</a>
+      <mat-divider *ngIf="loginService.isReadContact()"></mat-divider>
+      <a mat-list-item routerLink="contacts" *ngIf="loginService.isReadContact()" (click)="sidenav.toggle()">Contactes</a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+
+  <mat-sidenav-content>
+
+    <mat-toolbar color="">
+
+      <div *ngIf="loginService.isAuthenticated">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+
+      <div>
+        <button mat-button routerLink="/" color="warn">Ordiges</button>
+      </div>
+
+      <div fxFlex fxLayout fxLayoutAlign="flex-end">
+        <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+          <li>
+            <button mat-button routerLink="/signup" color="" *ngIf="!loginService.isAuthenticated">Sign Up</button>
+          </li>
+          <li>
+            <button mat-button routerLink="/login" color=""  *ngIf="!loginService.isAuthenticated">Login</button>
+          </li>
+
+
+          <li *ngIf="loginService.isAuthenticated" fxLayout="row">
+            <p>{{loginService.infoToken.sub}}</p>
+            <button mat-button [matMenuTriggerFor]="menu">
+              <mat-icon>account_circle</mat-icon>
+            </button>
+            <mat-menu #menu>
+              <button mat-menu-item routerLink="profile">Profile</button>
+              <button mat-menu-item (click)="loginService.logout()" >Deconnecter</button>
+            </mat-menu>
+          </li>
+        </ul>
+      </div>
+
+    </mat-toolbar>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,79 @@
+<ngx-spinner
+  bdOpacity=0
+  bdColor="rgba(51,51,51,0.8)"
+  size="default"
+  color="#fff"
+  type="ball-clip-rotate"
+  [fullScreen]="true"
+>
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+<mat-tab-group>
+  <mat-tab label="{{entityLabel}}">
+    <div class="container">
+      <mat-card>
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+          <ng-container matColumnDef="index">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> N°</th>
+            <td mat-cell *matCellDef="let element; let i = index;">{{i}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef={{elt.name}} *ngFor="let elt of tableHeader">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{elt.label}}</th>
+            <td mat-cell *matCellDef="let element"> {{element[elt.name]}} </td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row)"></tr>
+        </table>
+
+
+        <div class="custom_pagination" fxLayout="row" fxLayoutAlign="space-between" style="margin-top: 1em">
+          <mat-form-field style="width: 150px; !important">
+            <mat-label>Command par page:</mat-label>
+            <select matNativeControl [(ngModel)]="size" (change)="pageChange($event,'number_per_page')">
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="{{entitySize}}">{{entitySize}}</option>
+            </select>
+          </mat-form-field>
+
+          <mat-form-field style="text-align: right;width: 200px; !important">
+            <input matInput [(ngModel)]="actualPage" type="number" (change)="pageChange($event,'input_Page')">
+            <span matSuffix> / {{numberPages}}</span>
+            <span matPrefix> {{"page: "}} </span>
+          </mat-form-field>
+
+
+          <mat-button-toggle-group fxLayoutAlign="flex-end">
+            <mat-button-toggle value="bold" mat-icon-button
+                               (change)="pageChange($event,'first_page')"
+                               [disabled]="actualPage == 1">
+              <mat-icon>first_page</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="bold" mat-icon-button
+                               (change)="pageChange($event,'navigate_before')" [disabled]="actualPage == 1">
+              <mat-icon>navigate_before</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="bold" mat-icon-button
+
+                               (change)="pageChange($event,'navigate_next')" [disabled]="actualPage >= numberPages">
+              <mat-icon>navigate_next</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="bold" mat-icon-button
+                               (change)="pageChange($event,'last_page')"
+                               [disabled]="actualPage == numberPages">
+              <mat-icon>last_page</mat-icon>
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+      </mat-card>
+
+    </div>
+  </mat-tab>
+</mat-tab-group>

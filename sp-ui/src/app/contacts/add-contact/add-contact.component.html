@@ -1,0 +1,155 @@
+<h2 mat-dialog-title>Ajouter Contact</h2>
+
+<!--<mat-dialog-content>-->
+<!--<mat-card>-->
+<!--<form fxLayout="column" fxLayoutAlign="center center" #f="ngForm">-->
+
+<!--<mat-form-field>-->
+<!--<input matInput placeholder="Login" ngModel name="username">-->
+<!--</mat-form-field>-->
+
+<!--<mat-form-field>-->
+<!--<input matInput placeholder="Mot de passe" ngModel name="password">-->
+<!--</mat-form-field>-->
+
+<!--<mat-form-field>-->
+<!--<input matInput placeholder="Nom" ngModel name="name">-->
+<!--</mat-form-field>-->
+
+<!--<mat-form-field>-->
+<!--<input matInput placeholder="Telephone" ngModel name="telephone">-->
+<!--</mat-form-field>-->
+
+<!--<mat-form-field>-->
+<!--<input matInput placeholder="Fax" ngModel name="fax">-->
+<!--</mat-form-field>-->
+
+<!--<mat-form-field>-->
+<!--<input matInput placeholder="Email" ngModel name="email">-->
+<!--</mat-form-field>-->
+
+<!--<mat-form-field>-->
+<!--<input matInput placeholder="Ville" ngModel name="city">-->
+<!--</mat-form-field>-->
+
+<!--<mat-form-field>-->
+<!--<input matInput placeholder="Etat" ngModel name="state">-->
+<!--</mat-form-field>-->
+
+<!--<mat-form-field>-->
+<!--<input matInput placeholder="Code postal" ngModel name="zipCode">-->
+<!--</mat-form-field>-->
+
+<!--&lt;!&ndash;<mat-selection-list>&ndash;&gt;-->
+<!--&lt;!&ndash;<div *ngFor="let authority of authorities">&ndash;&gt;-->
+<!--&lt;!&ndash;<mat-list-option ngModel name="{{authority.name}}">&ndash;&gt;-->
+<!--&lt;!&ndash;{{authority.label}}&ndash;&gt;-->
+<!--&lt;!&ndash;</mat-list-option>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</mat-selection-list>&ndash;&gt;-->
+
+<!--<mat-selection-list #list ngModel name="authorities">-->
+<!--<mat-list-option *ngFor="let authority of authorities" [value]="authority.name">-->
+<!--{{authority.label}}-->
+<!--</mat-list-option>-->
+<!--</mat-selection-list>-->
+<!--</form>-->
+
+<!--<mat-dialog-actions align="end">-->
+<!--<button mat-button mat-dialog-close>Annuler</button>-->
+
+<!--<button mat-button [mat-dialog-close]="true" cdkFocusInitial type="submit" (click)="onAddContact(f.value)">-->
+<!--Ajouter-->
+<!--</button>-->
+<!--</mat-dialog-actions>-->
+
+<!--</mat-card>-->
+<!--</mat-dialog-content>-->
+
+
+<mat-vertical-stepper #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Information Personnel</ng-template>
+
+
+      <mat-form-field>
+        <input matInput placeholder="Login"  formControlName="username">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Mot de passe"  formControlName="password">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Nom"  formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Telephone"  formControlName="telephone">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Fax"  formControlName="fax">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Email"  formControlName="email">
+      </mat-form-field>
+
+
+      <div>
+        <button color="primary" mat-button matStepperNext>Suivant</button>
+      </div>
+
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Address</ng-template>
+
+
+      <mat-form-field>
+        <input matInput placeholder="Ville"  formControlName="city">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Etat"  formControlName="state">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Code postal" type="number" formControlName="zipCode">
+      </mat-form-field>
+
+
+      <div>
+        <button color="warn" mat-button matStepperPrevious>Retour</button>
+        <button color="primary" mat-button matStepperNext>Suivant</button>
+      </div>
+
+    </form>
+  </mat-step>
+
+
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Privilége</ng-template>
+
+
+      <mat-selection-list #list formControlName="authorities">
+        <mat-list-option *ngFor="let authority of authorities" [value]="authority.name">
+          {{authority.label}}
+        </mat-list-option>
+      </mat-selection-list>
+
+      <div>
+        <div>
+          <button mat-button color="warn" matStepperPrevious>Retour</button>
+          <button mat-button color="primary" (click)="onSubmit()" cdkFocusInitial>Ajouter</button>
+        </div>
+      </div>
+
+    </form>
+  </mat-step>
+
+</mat-vertical-stepper>

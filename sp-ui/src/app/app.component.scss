@@ -1,0 +1,11 @@
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+  height: 100%;
+}
+.navigation-items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+mat-sidenav {
+  width: 250px;
+}

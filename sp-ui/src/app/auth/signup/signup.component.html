@@ -1,0 +1,57 @@
+<section class="signup-form">
+  <form fxLayout="column" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="onSignUp(f.value)">
+    <mat-form-field>
+      <input matInput placeholder="username" type="text" ngModel name="username"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="password" type="password" ngModel name="password"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="name" type="text" ngModel name="name"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="telephone" type="text" ngModel name="telephone"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="fax" type="text" ngModel name="fax"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="email" type="email" ngModel name="email"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="activitySector" type="text" ngModel name="activitySector"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="employeeNumber" type="number" ngModel name="employeeNumber"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="company_number" type="text" ngModel name="company_number"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="tva" type="text" ngModel name="tva"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="city" type="text" ngModel name="city"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="state" type="text" ngModel name="state"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="zipCode" type="number" ngModel name="zipCode"/>
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+  </form>
+</section>

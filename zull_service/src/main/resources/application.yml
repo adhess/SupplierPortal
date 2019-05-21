@@ -1,0 +1,64 @@
+server:
+  port: 8765
+spring.application.name: zuul-service
+zuul.add-proxy-headers: false
+#eureka.client.serviceUrl.defaultZone: http://localhost:8761/eureka/
+#ribbon.eureka.enabled: false
+zuul.sensitiveHeaders: Cookie,Set-Cookie
+
+zuul:
+  prefix: /API
+  routes:
+    auth:
+      path: /auth/**
+      serviceId: auth-service
+    p2p:
+      path: /p2p/**
+      serviceId: p2p-service
+  add-host-header: false
+#  host:
+#    connect-timeout-millis: 5000
+#    socket-timeout-millis: 180000
+
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 3000
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    registerWithEureka: true
+    fetch-registry: true
+
+#management:
+#  endpoint:
+#    routes:
+#      enabled: true
+#    web:
+#  endpoints:
+#    jmx:
+#      exposure:
+#        include: "*"
+
+
+#
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 180000
+
+
+#
+#zuul:
+#  routes:
+#    auth:
+#      path: http://localhost:8765
+#    p2p:
+#      path: http://localhost:6589
