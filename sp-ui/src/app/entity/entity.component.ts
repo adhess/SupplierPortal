@@ -97,6 +97,8 @@ export class EntityComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   entityLabel: string;
+  private timezoneMap = {BST: 'GMT+0100'};
+
 
   constructor(private activatedRoute: ActivatedRoute, private entityService: EntityService,
               private spinnerDialog: MatDialog, public detailsDialog: MatDialog,
@@ -195,6 +197,10 @@ export class EntityComponent implements OnInit {
               } else {
                 o.root.status = 'Cloturé';
               }
+
+              o.root.credat = this.formatDate(o.root.credat);
+              o.root.dealivdat = this.formatDate(o.root.dealivdat);
+              o.root.explivdat = this.formatDate(o.root.explivdat);
               tab.push(o.root);
             }
             ELEMENT_DATA = tab;
@@ -202,17 +208,19 @@ export class EntityComponent implements OnInit {
           case 'invoice':
             const tab1: PeriodicElementInvoice[] = [];
             for (const o of u.body['content']) {
-              // if (o.root.status === '0') {
-              //   o.root.status = 'Transmise au fournisseur';
-              // } else {
-              //   o.root.status = 'Cloturé';
-              // }
-              tab1.push(o.root);
-              if (o.root.epfdet.length !== 0) {
-                console.log(o);
-                console.log(o.root.epcdet);
-                console.log('not empty: ' + i);
+              if (o.root.status === 'ONGOING') {
+                o.root.status = 'En Cours';
+              } else if (o.root.status === 'ACCOUNTED') {
+                o.root.status = 'Comptabilisée';
+              } else if (o.root.status === 'REFUSED') {
+                o.root.status = 'Refusée';
+              } else {
+                o.root.status = 'Bloquée';
               }
+
+              o.root.echdat = this.formatDate(o.root.echdat);
+              o.root.recdat = this.formatDate(o.root.recdat);
+              tab1.push(o.root);
             }
             ELEMENT_DATA = tab1;
             // console.log(ELEMENT_DATA);
@@ -249,4 +257,27 @@ export class EntityComponent implements OnInit {
       }
     });
   }
+
+  private formatDate(d) {
+    console.log(d);
+    if (d) {
+      const date = new Date(this.reOrderDate(d));
+
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      const hours = date.getHours();
+      const minutes = date.getMinutes();
+      return (day < 10 ? '0' : '') + day + '/' + (month < 10 ? '0' : '') + month + '/' + date.getFullYear()
+        + ', ' + (hours < 10 ? '0' : '') + hours + ':' + (minutes < 10 ? '0' : '') + minutes;
+    }
+  }
+
+
+  reOrderDate(str) {
+    const re = /^(\w+) (\w+) (\d\d) (\d\d:\d\d:\d\d) (\w+) (\d\d\d\d)$/;
+    return str.replace(re, ($0, day, month, date, time, zone, year) => {
+      return day + ' ' + month + ' ' + date + ' ' + year + ' ' + time + ' ' + (this.timezoneMap[zone] || zone);
+    });
+  }
+
 }

@@ -9,7 +9,7 @@
 
     <!-- Position Column -->
     <ng-container matColumnDef={{elt.name}} *ngFor="let elt of tableHeader">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{elt.label}}</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center"> {{elt.label}}</th>
       <td mat-cell *matCellDef="let element" [style.background]="element === selectedRow ? '#ffcb83':0">
         {{element[elt.name]}}
       </td>

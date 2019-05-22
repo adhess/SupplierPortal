@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 public class AuthenticatedHelper {
+
     public static String findUsername() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {

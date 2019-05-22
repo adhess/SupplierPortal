@@ -1,8 +1,8 @@
 <ngx-spinner
   bdOpacity=0
-  bdColor="rgba(51,51,51,0.8)"
+  bdColor="rgba(51,51,51,0.05)"
   size="default"
-  color="#fff"
+  color="#111"
   type="ball-clip-rotate"
   [fullScreen]="true"
 >
@@ -16,12 +16,12 @@
         <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
           <ng-container matColumnDef="index">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> N°</th>
+            <th mat-header-cell *matHeaderCellDef> N°</th>
             <td mat-cell *matCellDef="let element; let i = index;">{{i}}</td>
           </ng-container>
 
           <ng-container matColumnDef={{elt.name}} *ngFor="let elt of tableHeader">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{elt.label}}</th>
+            <th mat-header-cell *matHeaderCellDef> {{elt.label}}</th>
             <td mat-cell *matCellDef="let element"> {{element[elt.name]}} </td>
           </ng-container>
 

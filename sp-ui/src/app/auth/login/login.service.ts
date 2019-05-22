@@ -204,6 +204,7 @@ export class LoginService {
     this.token = undefined;
     this.role = 'NONE';
     localStorage.removeItem('token_current_user');
+    this.disconnect();
     this.router.navigate(['/login']);
   }
 
@@ -244,11 +245,13 @@ export class LoginService {
 
 
   initializeWebSocketConnection() {
-    const ws = new SockJS(this.serverUrl);
+
+    let ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
     const that = this;
     this.stompClient.connect({}, () => {
       this.notificationSub = that.stompClient.subscribe('/' + this.infoToken.sub, (message) => {
+        console.log(message);
         if (message.body) {
           this.snackBar.open(message.body, ' :message', {
             duration: 2000,
