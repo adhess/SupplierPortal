@@ -1,14 +1,21 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav role="navigation" mode="push">
-
-    <mat-nav-list style=";margin-top: 3em">
-      <a mat-list-item routerLink="/home" (click)="sidenav.toggle()">Accueil</a>
-      <mat-divider *ngIf="loginService.isReadInvoice()"></mat-divider>
-      <a mat-list-item routerLink="/i/invoice" *ngIf="loginService.isReadInvoice()" (click)="sidenav.toggle()">Factures</a>
-      <mat-divider *ngIf="loginService.isReadOrder()"></mat-divider>
-      <a mat-list-item routerLink="/c/order" *ngIf="loginService.isReadOrder()" (click)="sidenav.toggle()">Commandes</a>
-      <mat-divider *ngIf="loginService.isReadContact()"></mat-divider>
-      <a mat-list-item routerLink="contacts" *ngIf="loginService.isReadContact()" (click)="sidenav.toggle()">Contactes</a>
+  <mat-sidenav #sidenav role="navigation" mode="push" style="background: #2D323E">
+    <div class="user" fxLayout="column" fxLayoutAlign="center center" style="height: 20%;">
+      <h3 style="margin-bottom: -1em">{{loginService.userInfo?.name}}</h3>
+      <h5>{{loginService.userInfo?.email}}</h5>
+      <div class="avatar-container">
+        <mat-icon>person</mat-icon>
+      </div>
+    </div>
+    <mat-nav-list class="navbar-content" >
+      <a mat-list-item routerLink="/home"
+         (click)="sidenav.toggle();select('home')" class="mat-list-link">Accueil</a>
+      <a mat-list-item routerLink="/i/invoice" *ngIf="loginService.isReadInvoice()"
+         (click)="sidenav.toggle();select('invoice')" class="mat-list-link">Factures</a>
+      <a mat-list-item routerLink="/c/order" *ngIf="loginService.isReadOrder()"
+         (click)="sidenav.toggle();select('order')" class="mat-list-link">Commandes</a>
+      <a mat-list-item routerLink="contacts" *ngIf="loginService.isReadContact()"
+         (click)="sidenav.toggle();select('contacts')" class="mat-list-link">Contactes</a>
     </mat-nav-list>
 
   </mat-sidenav>
@@ -25,31 +32,69 @@
       </div>
 
       <div>
-        <button mat-button routerLink="/" style="height: 65px;width: 105px;"><img style="height: 60px;width: 80px;" src="../assets/ordiges-logo-couleur.svg"></button>
+        <button mat-button routerLink="/" style="height: 65px;width: 105px;"><img style="height: 60px;width: 80px;"
+                                                                                  src="../assets/ordiges-logo-couleur.svg">
+        </button>
       </div>
 
-      <div fxFlex fxLayout fxLayoutAlign="flex-end">
+      <div fxFlex fxLayout fxLayoutAlign="flex-end" style="height: 100%">
         <ul fxLayout fxLayoutGap="10px" class="navigation-items">
-          <li>
-            <button mat-button routerLink="/signup" color="" *ngIf="!loginService.isAuthenticated">Sign Up</button>
-          </li>
-          <li>
-            <button mat-button routerLink="/login" color=""  *ngIf="!loginService.isAuthenticated">Login</button>
-          </li>
+          <!--<li>-->
+
+            <!--<div fxLayout="row" fxLayoutAlign="center center">-->
+              <!--<i class="fa fa-sign-in" aria-hidden="true"></i>-->
+              <!--<button mat-raised-button routerLink="/signup"-->
+                      <!--color="primary"-->
+                      <!--*ngIf="!loginService.isAuthenticated"-->
+                      <!--class="user-button" style="height: 100%">Sign Up</button>-->
+            <!--</div>-->
 
 
-          <li *ngIf="loginService.isAuthenticated" fxLayout="row">
-            <p>{{loginService.infoToken.sub}}</p>
-            <button mat-button [matMenuTriggerFor]="menu">
-              <mat-icon>account_circle</mat-icon>
+
+
+
+          <!--</li>-->
+          <li>
+            <button mat-raised-button routerLink="/login"
+                    color="primary" style="margin-top: 1em"
+                    *ngIf="!loginService.isAuthenticated"
+                    class="user-button">
+              Login
             </button>
-            <mat-menu #menu>
-              <button mat-menu-item routerLink="profile">Profile</button>
-              <button mat-menu-item (click)="loginService.logout()" >Deconnecter</button>
-            </mat-menu>
           </li>
+
         </ul>
       </div>
+
+
+      <button mat-button [matMenuTriggerFor]="userMenu"
+              class="user-button" style="height: 100%"
+              *ngIf="loginService.isAuthenticated">
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <i class="material-icons">person_outline</i>
+          <span class="username mr-12" fxHide fxShow.gt-sm>{{loginService.infoToken.sub}}</span>
+          <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
+        </div>
+      </button>
+
+      <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+
+        <button mat-menu-item routerLink="profile">
+          <mat-icon>account_circle</mat-icon>
+          <span>Mon Profile</span>
+        </button>
+
+        <button mat-menu-item class="" (click)="exception()">
+          <mat-icon>mail</mat-icon>
+          <span>Messages</span>
+        </button>
+
+        <button mat-menu-item class="" (click)="loginService.logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Se Deconnecter</span>
+        </button>
+
+      </mat-menu>
 
     </mat-toolbar>
 
@@ -57,4 +102,5 @@
       <router-outlet></router-outlet>
     </main>
   </mat-sidenav-content>
+
 </mat-sidenav-container>

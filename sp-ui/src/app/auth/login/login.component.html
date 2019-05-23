@@ -1,13 +1,45 @@
-<section class="signup-form">
-  <form fxLayout="column" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="onLogin(f.value)">
-    <mat-form-field>
-      <input matInput placeholder="username" type="text" ngModel name="username"/>
-    </mat-form-field>
+<div id="login" fxLayout="column" fxLayoutAlign="center center">
 
-    <mat-form-field>
-      <input matInput placeholder="password" type="password" ngModel name="password"/>
-    </mat-form-field>
+  <div id="login-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
 
-    <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Login</button>
-  </form>
-</section>
+    <div id="login-form">
+
+      <section class="signup-form">
+        <form fxLayout="column" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="onLogin(f.value)" fxLayoutGap="20px">
+
+
+          <div class="logo">
+            <img src="../../../assets/cropped-facivon-150x150.png">
+          </div>
+
+          <div class="title">CONNECTEZ-VOUS</div>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput type="text" ngModel name="username">
+            <mat-icon matSuffix>person_outline</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput type="password" ngModel name="password">
+            <mat-icon matSuffix>vpn_key</mat-icon>
+          </mat-form-field>
+
+
+          <button type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Se Connecter</button>
+        </form>
+
+        <div class="register" fxLayout="column" fxLayoutAlign="center center" style="margin-top: 2em" fxlayoutgap="20px">
+          <span class="text">Vous n'avez pas de compte?</span>
+          <a class="link" [routerLink]="'/signup'">Créer un compte</a>
+        </div>
+
+      </section>
+
+
+    </div>
+
+  </div>
+
+</div>

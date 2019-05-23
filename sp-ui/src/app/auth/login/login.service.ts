@@ -36,7 +36,7 @@ export class LoginService {
     readContacts: 'Voir Les Contactes',
     readAndWriteContacts: 'Voir Et Modifier Les Contactes',
   };
-  private userInfo: any;
+  public userInfo: any;
 
   constructor(private http: HttpClient,
               private snackBar: MatSnackBar,
