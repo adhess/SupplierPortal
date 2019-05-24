@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/AuthorizationService/authenticationService.iml" filepath="$PROJECT_DIR$/AuthorizationService/authenticationService.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka_service/eureka_service.iml" filepath="$PROJECT_DIR$/eureka_service/eureka_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka_service/eureka_service.iml" filepath="$PROJECT_DIR$/eureka_service/eureka_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/notificationService/notification.iml" filepath="$PROJECT_DIR$/notificationService/notification.iml" />
       <module fileurl="file://$PROJECT_DIR$/p2p_service/p2p_service.iml" filepath="$PROJECT_DIR$/p2p_service/p2p_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/p2p_service/p2p_service.iml" filepath="$PROJECT_DIR$/p2p_service/p2p_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/zull_service/zull_service.iml" filepath="$PROJECT_DIR$/zull_service/zull_service.iml" />

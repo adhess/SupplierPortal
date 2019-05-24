@@ -10,7 +10,7 @@ import {LoginComponent} from './auth/login/login.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 import {HomeComponent} from './home/home.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {ProgressSpinnerDialogComponent} from './progress-spinner-dialog/progress-spinner-dialog.component';
 import {EntityComponent} from './entity/entity.component';
@@ -18,8 +18,10 @@ import {DetailsComponent} from './details/details.component';
 import {ContactsComponent} from './contacts/contacts.component';
 import {AffectSupplierComponent} from './affect-supplier/affect-supplier.component';
 import {AddContactComponent} from './contacts/add-contact/add-contact.component';
-import { ProfileComponent } from './profile/profile.component';
+import {ProfileComponent} from './profile/profile.component';
 import {NgxSpinnerModule} from "ngx-spinner";
+import {ChartsModule} from "ng2-charts";
+import { MyLineChartComponent } from './my-line-chart/my-line-chart.component';
 
 @NgModule({
   declarations: [
@@ -34,9 +36,11 @@ import {NgxSpinnerModule} from "ngx-spinner";
     ContactsComponent,
     AffectSupplierComponent,
     AddContactComponent,
-    ProfileComponent
+    ProfileComponent,
+    MyLineChartComponent
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

@@ -12,7 +12,6 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class AppComponent {
   selected = {};
-  value = 2;
   constructor(public loginService: LoginService, private profileService: ProfileService) {
     this.selected['home'] = true;
   }

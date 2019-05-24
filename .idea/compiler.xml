@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="authenticationService" />
         <module name="eureka_service" />
+        <module name="notification" />
         <module name="p2p_service" />
         <module name="zull_service" />
       </profile>
@@ -15,6 +16,7 @@
     <bytecodeTargetLevel>
       <module name="authenticationService" target="1.8" />
       <module name="eureka_service" target="1.8" />
+      <module name="notification" target="1.8" />
       <module name="p2p_service" target="1.8" />
       <module name="zull_service" target="1.8" />
     </bytecodeTargetLevel>
@@ -23,6 +25,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="authenticationService" options="-parameters" />
       <module name="eureka_service" options="-parameters" />
+      <module name="notification" options="-parameters" />
       <module name="p2p_service" options="-parameters" />
       <module name="zull_service" options="-parameters" />
     </option>

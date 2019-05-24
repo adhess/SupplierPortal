@@ -15,6 +15,10 @@ public interface P2p_order_Repository extends MongoRepository<P2p_order, String>
     @Query(value = "{}", count = true)
     public int countAll();
 
+
+    public int countAllByRoot_STATUS(String status);
+    public int countAllByRoot_STATUSAndRoot_SERCPTTIE(String status,Long sercpttie);
+
     int countAllByRoot_SERCPTTIE(Long sercpttie);
     Page<P2p_order> findAllByRoot_SERCPTTIE(Long sercpttie, PageRequest pageRequest);
 }

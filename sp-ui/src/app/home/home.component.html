@@ -1,3 +1,53 @@
-<p>
-  home works!
-</p>
+<div fxLayout="row" fxLayoutAlign="center center"  fxLayoutGap="3em" style="margin-top: 3em">
+
+  <mat-card style="width: 35em" *ngIf="loginService.isReadInvoice()">
+    <mat-card-header>
+      <mat-card-title>Factures</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <div>
+          <div class="chart">
+            <canvas baseChart
+                    height="350em"
+                    width="350em"
+                    [data]="pieChartDataInvoice"
+                    [labels]="pieChartLabelsInvoice"
+                    [chartType]="pieChartType"
+                    [options]="pieChartOptions"
+                    [colors]="pieChartColorsInvoice"
+                    [legend]="pieChartLegend">
+            </canvas>
+          </div>
+        </div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+
+
+  <mat-card style="width: 35em" *ngIf="loginService.isReadOrder()">
+    <mat-card-header>
+      <mat-card-title>Commandes</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <div>
+          <div class="chart">
+            <canvas baseChart
+                    height="350em"
+                    width="350em"
+                    [data]="pieChartDataOrder"
+                    [labels]="pieChartLabelsOrder"
+                    [chartType]="pieChartType"
+                    [options]="pieChartOptions"
+                    [colors]="pieChartColorsOrder"
+                    [legend]="pieChartLegend">
+            </canvas>
+          </div>
+        </div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>

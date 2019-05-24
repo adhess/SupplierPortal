@@ -13,17 +13,12 @@
         <!--<form fxLayout="column" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="onSignUp(f.value)" fxLayoutGap="20px">-->
 
 
+        <mat-horizontal-stepper #stepper>
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+              <ng-template matStepLabel>Information Personnel</ng-template>
 
-
-
-
-
-
-          <mat-horizontal-stepper #stepper>
-            <mat-step [stepControl]="firstFormGroup">
-              <form [formGroup]="firstFormGroup" fxLayoutGap="20px">
-                <ng-template matStepLabel>Information Personnel</ng-template>
-
+              <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1em">
 
                 <mat-form-field appearance="outline">
                   <mat-label>Username</mat-label>
@@ -42,7 +37,9 @@
                   <input matInput type="text" formControlName="name">
                   <mat-icon matSuffix></mat-icon>
                 </mat-form-field>
+              </div>
 
+              <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1em">
                 <mat-form-field appearance="outline">
                   <mat-label>Téléphone</mat-label>
                   <input matInput type="text" formControlName="telephone">
@@ -60,90 +57,88 @@
                   <input matInput type="email" formControlName="email">
                   <mat-icon matSuffix></mat-icon>
                 </mat-form-field>
+              </div>
+
+              <div>
+                <button color="primary" mat-button matStepperNext>Suivant</button>
+              </div>
+
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup" fxLayoutGap="30px">
+              <ng-template matStepLabel>Address</ng-template>
 
 
+              <mat-form-field appearance="outline">
+                <mat-label>Ville</mat-label>
+                <input matInput type="text" formControlName="city">
+                <mat-icon matSuffix></mat-icon>
+              </mat-form-field>
 
+              <mat-form-field appearance="outline">
+                <mat-label>Etat</mat-label>
+                <input matInput type="text" formControlName="state">
+                <mat-icon matSuffix></mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Code postal</mat-label>
+                <input matInput type="number" formControlName="zipCode">
+                <mat-icon matSuffix></mat-icon>
+              </mat-form-field>
+
+
+              <div>
+                <button color="warn" mat-button matStepperPrevious>Retour</button>
+                <button color="primary" mat-button matStepperNext>Suivant</button>
+              </div>
+
+            </form>
+          </mat-step>
+
+
+          <mat-step [stepControl]="thirdFormGroup">
+            <form [formGroup]="thirdFormGroup" fxLayoutGap="25px">
+              <ng-template matStepLabel>Information société</ng-template>
+
+
+              <mat-form-field appearance="outline">
+                <mat-label>Secteur d'activité</mat-label>
+                <input matInput type="text" formControlName="activitySector">
+                <mat-icon matSuffix></mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Nombre d'employé</mat-label>
+                <input matInput type="number" formControlName="employeeNumber">
+                <mat-icon matSuffix></mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Numéro d'entreprise</mat-label>
+                <input matInput type="text" formControlName="company_number">
+                <mat-icon matSuffix></mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>TVA</mat-label>
+                <input matInput type="text" formControlName="tva">
+                <mat-icon matSuffix></mat-icon>
+              </mat-form-field>
+
+              <div>
                 <div>
-                  <button color="primary" mat-button matStepperNext>Suivant</button>
+                  <button mat-button color="warn" matStepperPrevious>Retour</button>
                 </div>
+              </div>
 
-              </form>
-            </mat-step>
-            <mat-step [stepControl]="secondFormGroup">
-              <form [formGroup]="secondFormGroup" fxLayoutGap="30px">
-                <ng-template matStepLabel>Address</ng-template>
+            </form>
+          </mat-step>
 
+        </mat-horizontal-stepper>
 
-
-                <mat-form-field appearance="outline">
-                  <mat-label>Ville</mat-label>
-                  <input matInput type="text" formControlName="city">
-                  <mat-icon matSuffix></mat-icon>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline">
-                  <mat-label>Etat</mat-label>
-                  <input matInput type="text" formControlName="state">
-                  <mat-icon matSuffix></mat-icon>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline">
-                  <mat-label>Code postal</mat-label>
-                  <input matInput type="number" formControlName="zipCode">
-                  <mat-icon matSuffix></mat-icon>
-                </mat-form-field>
-
-
-                <div>
-                  <button color="warn" mat-button matStepperPrevious>Retour</button>
-                  <button color="primary" mat-button matStepperNext>Suivant</button>
-                </div>
-
-              </form>
-            </mat-step>
-
-
-            <mat-step [stepControl]="thirdFormGroup">
-              <form [formGroup]="thirdFormGroup" fxLayoutGap="25px">
-                <ng-template matStepLabel>Information société</ng-template>
-
-
-                <mat-form-field appearance="outline">
-                  <mat-label>Secteur d'activité</mat-label>
-                  <input matInput type="text" formControlName="activitySector">
-                  <mat-icon matSuffix></mat-icon>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline">
-                  <mat-label>Nombre d'employé</mat-label>
-                  <input matInput type="number" formControlName="employeeNumber">
-                  <mat-icon matSuffix></mat-icon>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline">
-                  <mat-label>Numéro d'entreprise</mat-label>
-                  <input matInput type="text" formControlName="company_number">
-                  <mat-icon matSuffix></mat-icon>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline">
-                  <mat-label>TVA</mat-label>
-                  <input matInput type="text" formControlName="tva">
-                  <mat-icon matSuffix></mat-icon>
-                </mat-form-field>
-
-                <div>
-                  <div>
-                    <button mat-button color="warn" matStepperPrevious>Retour</button>
-                  </div>
-                </div>
-
-              </form>
-            </mat-step>
-
-          </mat-horizontal-stepper>
-
-          <button type="submit" mat-raised-button color="accent" (click)="onSignUp()">S'inscrire</button>
+        <button type="submit" mat-raised-button color="accent" (click)="onSignUp()">S'inscrire</button>
         <!--</form>-->
 
 

@@ -13,6 +13,9 @@ public interface P2p_invoice_Repository extends MongoRepository<P2p_invoice, Str
     @Query(value = "{}", count = true)
     public int countAll();
 
+    public int countAllByRoot_STATUS(String status);
+    public int countAllByRoot_STATUSAndRoot_SERCPTTIE(String status,Long sercpttie);
+
     Page<P2p_invoice> findAllByRoot_SERCPTTIE(Long sercpttie, Pageable page);
     int countAllByRoot_SERCPTTIE(Long sercpttie);
 

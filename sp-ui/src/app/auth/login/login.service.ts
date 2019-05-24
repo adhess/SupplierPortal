@@ -204,8 +204,8 @@ export class LoginService {
     this.token = undefined;
     this.role = 'NONE';
     localStorage.removeItem('token_current_user');
-    this.disconnect();
     this.router.navigate(['/login']);
+    this.disconnect();
   }
 
   getUserInfo() {
